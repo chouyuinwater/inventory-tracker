@@ -103,5 +103,21 @@
             sku: $("#sku").val(),
             eventno: $("#sku").val()
         });
+
+    });
+
+    $("#tracker_detail_button").on('click', function () {
+        var horizontalPadding = 30;
+        var verticalPadding = 30;
+        var width = 650, height = 800;
+        // $('#dlg').dialog({
+        //     width: width,
+        //     height: height,
+        //     modal: true,
+        //     resizable: true,
+        //     autoResize: true,})
+        //     .width(width - horizontalPadding)
+        //     .height(height - verticalPadding);  ;
+        $('#dlg').dialog('open');
     });
 })();
