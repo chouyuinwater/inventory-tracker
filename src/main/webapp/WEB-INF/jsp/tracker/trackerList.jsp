@@ -79,11 +79,12 @@
                     <div class="cols">
                         <lable>展示全部：</lable>
                         <input type="checkbox" id="all"/>
+                        <a id="tracker_detail_button" href="javascript:void(0)" class="easyui-linkbutton btn">详细流水</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="cols">
-                        <a id="tracker_query_button" href="javascript:void(0)" class="easyui-linkbutton btn"
+                        <a id="tracker_query_button" href="javascript:void(0)" class="easyui-linkbutton btn" style="float: right;"
                            iconCls="icon-search">开始对比</a>
                     </div>
                 </div>
@@ -101,5 +102,20 @@
 <script src="/static/script/jquery.fn.extend.js"></script>
 <script src="/static/script/trackerList.js"></script>
 <script src="/static/script/Date.extend.js"></script>
+<div id="dlg" class="easyui-dialog" closed="true" title="Detail" data-options="iconCls:'icon-save'" style="width:80%;height:500px;max-width:800px;padding:1px">
+    <table class="easyui-datagrid" title="Basic DataGrid" style="width:100%;;height:80%;"
+           data-options="rownumbers:true,singleSelect:true,pagination:true,collapsible:true,url:'/static/data/detail_data.json',method:'get'">
+        <thead>
+        <tr>
+            <th data-options="field:'itemid',width:80">Item ID</th>
+            <th data-options="field:'productid',width:100">Product</th>
+            <th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+            <th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
+            <th data-options="field:'attr1',width:250">Attribute</th>
+            <th data-options="field:'status',width:60,align:'center'">Status</th>
+        </tr>
+        </thead>
+    </table>
+</div>
 </body>
 </html>
