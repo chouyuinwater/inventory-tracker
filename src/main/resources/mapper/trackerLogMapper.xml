@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.inventory.tracker.dao.TrackerLogDao">
+    <resultMap id="BaseResultMap" type="Tracker">
+        <id column="id" property="id"/>
+        <result column="sysid" property="sysid"/>
+        <result column="templateid" property="templateid"/>
+        <result column="eventno" property="eventno"/>
+        <result column="sku" property="sku"/>
+        <result column="amount" property="amount"/>
+        <result column="eventstatus" property="eventstatus"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        sysid,
+        templateid,
+        eventno,
+        sku,
+        amount,
+        eventstatus,
+        CREATE_TIME,
+        UPDATE_TIME
+    </sql>
+    <insert id="save" parameterType="com.jd.inventory.tracker.domain.TrackerLog"
+            useGeneratedKeys="true" keyProperty="id">
+        <!--自增ID不能显示增加 要手工去掉-->
+        insert into tracker_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != sysid">
+                sysid,
+            </if>
+            <if test="null != templateid">
+                templateid,
+            </if>
+            <if test="null != eventno">
+                eventno,
+            </if>,
+            <if test="null != sku">
+                sku,
+            </if>
+            <if test="null != amount">
+                amount,
+            </if>
+            eventstatus,
+            CREATE_TIME
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != sysid">
+                #{sysid,jdbcType=BIGINT},
+            </if>
+            <if test="null != templateid">
+                #{templateid,jdbcType=BIGINT},
+            </if>
+            <if test="null != eventno">
+                #{eventno,jdbcType=VARCHAR},
+            </if>
+            <if test="null != sku">
+                #{sku,jdbcType=VARCHAR},
+            </if>
+            <if test="null != amount">
+                #{amount,jdbcType=VARCHAR},
+            </if>
+            #{eventstatus,jdbcType=VARCHAR},
+            #{CREATE_TIME,jdbcType=TIMESTAMP}
+        </trim>
+    </insert>
+    <!--<select id="gets" resultMap="BaseResultMap">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--from tracker-->
+        <!--<where>-->
+            <!--<if test="po.sysid !=null">-->
+                <!--and sysid = #{po.sysid}-->
+            <!--</if>-->
+            <!--<if test="po.sku !=null and po.sku !=''">-->
+                <!--and sku = #{po.sku}-->
+            <!--</if>-->
+            <!--<if test="po.eventnoList !=null and po.eventnoList.size>0">-->
+                <!--and eventno in-->
+                <!--<foreach collection="po.eventnoList" index="index" item="item" open="(" separator="," close=")">-->
+                    <!--#{item}-->
+                <!--</foreach>-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
+</mapper>

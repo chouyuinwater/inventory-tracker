@@ -20,5 +20,7 @@
         <mapper resource="mapper/trackerMapper.xml"/>
         <mapper resource="mapper/systemMapper.xml"/>
         <mapper resource="mapper/templateMapper.xml"/>
+        <mapper resource="mapper/trackerLogMapper.xml"/>
+        <mapper resource="mapper/trackerLogExtMapper.xml"/>
     </mappers>
 </configuration>
