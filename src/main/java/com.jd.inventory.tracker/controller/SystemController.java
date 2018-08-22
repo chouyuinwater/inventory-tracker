@@ -1,10 +1,9 @@
 package com.jd.inventory.tracker.controller;
 
+import com.jd.inventory.tracker.domain.GenericResult;
 import com.jd.inventory.tracker.domain.System;
 import com.jd.inventory.tracker.domain.enums.ServiceStatusCodeEnum;
 import com.jd.inventory.tracker.domain.enums.SystemStatusEnum;
-import com.jd.inventory.tracker.domain.GenericResult;
-import com.jd.inventory.tracker.domain.Page;
 import com.jd.inventory.tracker.service.SystemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,13 +33,10 @@ public class SystemController {
 
     @ResponseBody
     @RequestMapping(value = "/getSystems", method = RequestMethod.POST)
-    public Page getSystems(Page page, System system) {
-        logger.info("requestBody : page={},system={}", page);
+    public List<System> getSystems(System system) {
+        logger.info("requestBody : system={}", system);
         system.setStatus(SystemStatusEnum.VALID.getStatus());
-
-        List<System> systemList = systemService.getSystems(page, system);
-        page.setRows(systemList);
-        return page;
+        return systemService.getSystems(null, system);
     }
 
     @RequestMapping(value = "/toAddSystem", method = RequestMethod.GET)

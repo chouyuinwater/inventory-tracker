@@ -7,14 +7,11 @@
         nowrap: true,
         striped: true,
         fitColumns: true,
-        pageSize: 15,
         collapsible: false,
         checkOnSelect: true,
         singleSelect: true,
-        pagination: true,
         rownumbers: true,
         loadMsg: "正在载入，请稍后...",
-        pageList: [15, 30, 50],
         columns: [
             [{
                 field: 'id',
