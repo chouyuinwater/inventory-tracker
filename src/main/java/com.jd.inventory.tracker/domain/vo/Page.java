@@ -1,4 +1,4 @@
-package com.jd.inventory.tracker.domain;
+package com.jd.inventory.tracker.domain.vo;
 
 import java.util.List;
 

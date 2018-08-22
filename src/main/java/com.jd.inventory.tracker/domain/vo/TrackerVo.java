@@ -4,9 +4,10 @@ import java.util.List;
 
 public class TrackerVo {
     private String eventno;
-    private Integer currentStep;
 
-    private List<KeyValuePair> keyValuePairs;
+    private InnerTracker sourceTracker;
+
+    private InnerTracker targetTracker;
 
     public String getEventno() {
         return eventno;
@@ -16,40 +17,61 @@ public class TrackerVo {
         this.eventno = eventno;
     }
 
-    public Integer getCurrentStep() {
-        return currentStep;
+    public InnerTracker getSourceTracker() {
+        return sourceTracker;
     }
 
-    public void setCurrentStep(Integer currentStep) {
-        this.currentStep = currentStep;
+    public void setSourceTracker(InnerTracker sourceTracker) {
+        this.sourceTracker = sourceTracker;
     }
 
-    public List<KeyValuePair> getKeyValuePairs() {
-        return keyValuePairs;
+    public InnerTracker getTargetTracker() {
+        return targetTracker;
     }
 
-    public void setKeyValuePairs(List<KeyValuePair> keyValuePairs) {
-        this.keyValuePairs = keyValuePairs;
+    public void setTargetTracker(InnerTracker targetTracker) {
+        this.targetTracker = targetTracker;
     }
 
-    public class KeyValuePair {
-        private String key;
-        private String value;
+    public static class InnerTracker {
+        private Integer currentStep;
+        private List<InnerTemplate> innerTemplates;
 
-        public String getKey() {
-            return key;
+        public Integer getCurrentStep() {
+            return currentStep;
         }
 
-        public void setKey(String key) {
-            this.key = key;
+        public void setCurrentStep(Integer currentStep) {
+            this.currentStep = currentStep;
         }
 
-        public String getValue() {
-            return value;
+        public List<InnerTemplate> getInnerTemplates() {
+            return innerTemplates;
         }
 
-        public void setValue(String value) {
-            this.value = value;
+        public void setInnerTemplates(List<InnerTemplate> innerTemplates) {
+            this.innerTemplates = innerTemplates;
+        }
+    }
+
+    public static class InnerTemplate {
+        private String desc;
+        private String status;
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
     }
 }

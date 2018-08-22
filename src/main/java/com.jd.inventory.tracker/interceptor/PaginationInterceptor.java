@@ -1,6 +1,6 @@
 package com.jd.inventory.tracker.interceptor;
 
-import com.jd.inventory.tracker.domain.Page;
+import com.jd.inventory.tracker.domain.vo.Page;
 import com.jd.inventory.tracker.interceptor.dialect.Dialect;
 import com.jd.inventory.tracker.interceptor.dialect.MySqlDialect;
 import com.jd.inventory.tracker.interceptor.dialect.OracleDialect;

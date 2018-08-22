@@ -7,7 +7,9 @@
         <result column="templateid" property="templateid"/>
         <result column="eventno" property="eventno"/>
         <result column="sku" property="sku"/>
-        <result column="eventstatus" property="eventstatus"/>
+        <result column="amount" property="amount"/>
+        <result column="current_date" property="currentDate"/>
+        <result column="current_status" property="currentStatus"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -16,7 +18,9 @@
         templateid,
         eventno,
         sku,
-        eventstatus
+        amount,
+        current_date,
+        current_status
     </sql>
 
     <select id="gets" resultMap="BaseResultMap">
@@ -27,8 +31,14 @@
             <if test="po.sysid !=null">
                 and sysid = #{po.sysid}
             </if>
-            <if test="po.templateid !=null">
-                and templateid = #{po.templateid}
+            <if test="po.sku !=null and po.sku !=''">
+                and sku = #{po.sku}
+            </if>
+            <if test="po.eventnoList !=null and po.eventnoList.size>0">
+                and eventno in
+                <foreach collection="po.eventnoList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
             </if>
         </where>
     </select>

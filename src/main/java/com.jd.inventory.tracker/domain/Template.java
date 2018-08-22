@@ -1,11 +1,16 @@
 package com.jd.inventory.tracker.domain;
 
+import java.util.List;
+
 public class Template {
     private Long id;
     private Long sysid;
     private String templatename;
     private String template;
     private Integer status;
+
+    //查询使用
+    private List<Long> templateIds;
 
     public Long getId() {
         return id;
@@ -45,5 +50,13 @@ public class Template {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public List<Long> getTemplateIds() {
+        return templateIds;
+    }
+
+    public void setTemplateIds(List<Long> templateIds) {
+        this.templateIds = templateIds;
     }
 }

@@ -4,7 +4,7 @@ import com.jd.inventory.tracker.dao.SystemDao;
 import com.jd.inventory.tracker.domain.System;
 import com.jd.inventory.tracker.domain.enums.ServiceStatusCodeEnum;
 import com.jd.inventory.tracker.domain.enums.SystemStatusEnum;
-import com.jd.inventory.tracker.domain.Page;
+import com.jd.inventory.tracker.domain.vo.Page;
 import com.jd.inventory.tracker.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

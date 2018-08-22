@@ -1,12 +1,20 @@
 package com.jd.inventory.tracker.domain;
 
+import java.util.Date;
+import java.util.List;
+
 public class Tracker {
     private Long id;
     private Long sysid;
     private Long templateid;
     private String eventno;
     private String sku;
-    private Integer eventstatus;
+    private String amount;
+    private Date currentDate;
+    private Integer currentStatus;
+
+    //查询使用
+    private List<String> eventnoList;
 
     public Long getId() {
         return id;
@@ -48,11 +56,35 @@ public class Tracker {
         this.sku = sku;
     }
 
-    public Integer getEventstatus() {
-        return eventstatus;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setEventstatus(Integer eventstatus) {
-        this.eventstatus = eventstatus;
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    public Integer getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(Integer currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
+    public List<String> getEventnoList() {
+        return eventnoList;
+    }
+
+    public void setEventnoList(List<String> eventnoList) {
+        this.eventnoList = eventnoList;
     }
 }

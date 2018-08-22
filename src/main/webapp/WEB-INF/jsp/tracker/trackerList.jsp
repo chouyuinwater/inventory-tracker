@@ -24,7 +24,8 @@
          style="width: 100%">
         <div class="body-dialog">
             <form id="tracker_query_form">
-                <input name="sysid" id="sysid" type="hidden"/>
+                <input name="sourceSysid" id="sourceSysidHidden" type="hidden"/>
+                <input name="targetSysid" id="targetSysidHidden" type="hidden"/>
                 <div class="row">
                     <div class="cols">
                         <lable>发起系统：</lable>
@@ -38,6 +39,7 @@
                                        textField:'sysname',
                                        panelHeight:'auto',
                                        onSelect: function(data){
+                                           $('#sourceSysidHidden').val($('#sourceSysid').combobox('getValue'));
                                        }
                         ">
                     </div>
@@ -46,13 +48,14 @@
                         <input type="text" id="targetSysid" class="easyui-combobox input" style="height:25px;"
                                data-options="
                                        required: true,
-                                       url:'/system/getSystems?sysid='+$('sourceSysid').val(),
+                                       url:'/system/getSystems',
                                        method:'post',
                                        valueField:'id',
                                        editable:false,
                                        textField:'sysname',
                                        panelHeight:'auto',
                                        onSelect: function(data){
+                                           $('#targetSysidHidden').val($('#targetSysid').combobox('getValue'));
                                        }
                         ">
                     </div>
@@ -62,25 +65,28 @@
                     <div class="cols">
                         <lable>起始时间：</lable>
                         <input type="text" id="startTime" class="easyui-datebox input"
-                               data-options="required:true,editable:false" style="height:25px;"/>
+                               data-options="required:false,editable:false" style="height:25px;"/>
                     </div>
                     <div class="cols">
                         <lable>终止时间：</lable>
                         <input type="text" id="endTime" class="easyui-datebox input"
-                               data-options="required:true,editable:false" style="height:25px;"/>
+                               data-options="required:false,editable:false" style="height:25px;"/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="cols">
                         <lable>对比sku：</lable>
-                        <input type="text" id="sku" class="easyui-textbox input" style="height:25px;"/>
+                        <input type="text" id="sku" class="easyui-textbox input"
+                               data-options="required:true" style="height:25px;"/>
                     </div>
                     <div class="cols">
-                        <lable>展示全部：</lable>
-                        <input type="checkbox" id="all"/>
+                        <lable>事件单号：</lable>
+                        <input type="text" id="eventno" class="easyui-textbox input"
+                               data-options="required:false" style="height:25px;"/>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="cols">
                         <a id="tracker_query_button" href="javascript:void(0)" class="easyui-linkbutton btn"

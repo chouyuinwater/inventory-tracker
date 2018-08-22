@@ -1,6 +1,6 @@
 package com.jd.inventory.tracker.dao;
 
-import com.jd.inventory.tracker.domain.Page;
+import com.jd.inventory.tracker.domain.vo.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

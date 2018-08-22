@@ -48,6 +48,12 @@
             <if test="po.sysid !=null">
                 and sysid = #{po.sysid}
             </if>
+            <if test="po.templateIds !=null and po.templateIds.size>0">
+                and id in
+                <foreach collection="po.templateIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
         </where>
     </select>
 

@@ -1,7 +1,7 @@
 package com.jd.inventory.tracker.exception;
 
 import com.jd.inventory.tracker.domain.enums.ServiceStatusCodeEnum;
-import com.jd.inventory.tracker.domain.GenericResult;
+import com.jd.inventory.tracker.domain.vo.GenericResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

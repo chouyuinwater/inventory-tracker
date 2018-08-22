@@ -1,6 +1,6 @@
 package com.jd.inventory.tracker.controller;
 
-import com.jd.inventory.tracker.domain.GenericResult;
+import com.jd.inventory.tracker.domain.vo.GenericResult;
 import com.jd.inventory.tracker.domain.System;
 import com.jd.inventory.tracker.domain.enums.ServiceStatusCodeEnum;
 import com.jd.inventory.tracker.domain.enums.SystemStatusEnum;

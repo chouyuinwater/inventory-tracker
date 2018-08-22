@@ -1,6 +1,6 @@
 (function () {
     $('#tracker_grid').datagrid({
-        title: "模板列表",
+        title: "对比列表",
         url: "getTrackers",
         method: 'post',
         nowrap: true,
@@ -29,22 +29,22 @@
                 }
             ],
             [{
-                field: 'currentStep',
+                field: 'sourceStep',
                 width: '40%',
                 title: "系统A",
                 rowspan: 1,
                 align: 'center',
                 formatter: function (value, rowData, rowIndex) {
-                    return '<div class="ystep' + rowIndex + '"></div>';
+                    return '<div class="sourceStep' + rowIndex + '"></div>';
                 }
             }, {
-                field: 'currentStep',
+                field: 'targetStep',
                 width: '40%',
                 title: "系统B",
                 rowspan: 1,
                 align: 'center',
                 formatter: function (value, rowData, rowIndex) {
-                    return '<div class="ystep' + rowIndex + '"></div>';
+                    return '<div class="targetStep' + rowIndex + '"></div>';
                 }
             }
             ]
@@ -56,34 +56,37 @@
 
             var data = $("#tracker_grid").datagrid('getData');
             data.rows.forEach(function (value, index, array) {
-                /*var steps = [];
-                var obj = {};
-                value.keyValuePairs.forEach(function (innerValue, innerIndex, innerArray) {
-                    obj[innerValue.key] = innerValue.value;
-                    steps.push(obj);
-                });*/
-
-                $(".ystep" + index).loadStep({
-                    size: "large",
-                    color: "green",
-                    steps: [{
-                        title: "定位",
-                        content: "20"
-                    }, {
-                        title: "下架",
-                        content: "30"
-                    }, {
-                        title: "复合",
-                        content: "40"
-                    }, {
-                        title: "出库",
-                        content: "50"
-                    }, {
-                        title: "回传",
-                        content: "60"
-                    }]
+                var sourceSteps = [];
+                value.sourceTracker.innerTemplates.forEach(function (innerValue, innerIndex, innerArray) {
+                    var obj = {};
+                    obj["title"] = innerValue.desc;
+                    obj["content"] = innerValue.status;
+                    sourceSteps.push(obj);
                 });
-                $(".ystep" + index).setStep(index % 5);
+
+                $(".sourceStep" + index).loadStep({
+                    size: "small",
+                    color: "green",
+                    steps: sourceSteps
+                });
+                $(".sourceStep" + index).setStep(value.sourceTracker.currentStep);
+
+                if(value.targetTracker) {
+                    var targetSteps = [];
+                    value.targetTracker.innerTemplates.forEach(function (innerValue, innerIndex, innerArray) {
+                        var obj = {};
+                        obj["title"] = innerValue.desc;
+                        obj["content"] = innerValue.status;
+                        targetSteps.push(obj);
+                    });
+
+                    $(".targetStep" + index).loadStep({
+                        size: "small",
+                        color: "green",
+                        steps: targetSteps
+                    });
+                    $(".targetStep" + index).setStep(value.targetTracker.currentStep);
+                }
             });
 
             $('#tracker_grid').datagrid('fixRowHeight');
@@ -93,8 +96,12 @@
 
     $("#tracker_query_button").on('click', function () {
         $('#tracker_grid').datagrid('load', {
-            sysid: $("#sysid").val(),
-            sku: $("#sku").val()
+            sourceSysid: $("#sourceSysidHidden").val(),
+            targetSysid: $("#targetSysidHidden").val(),
+            startTime: $("#startTime").val(),
+            endTime: $("#endTime").val(),
+            sku: $("#sku").val(),
+            eventno: $("#sku").val()
         });
     });
 })();
