@@ -65,7 +65,7 @@
                 #{amount,jdbcType=VARCHAR},
             </if>
             #{eventstatus,jdbcType=VARCHAR},
-            #{CREATE_TIME,jdbcType=TIMESTAMP}
+            #{createTime,jdbcType=TIMESTAMP}
         </trim>
     </insert>
     <!--<select id="gets" resultMap="BaseResultMap">-->

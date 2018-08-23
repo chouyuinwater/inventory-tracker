@@ -77,17 +77,18 @@ public class PusherService {
         Integer curStep = stepIndex.get(log.getStepKey());
         int preStep = curStep == null? -1 : curStep-1;
         if(preStep>0){
-            // TODO: tracker.setStep(preStep);
+            tracker.setCurrentStep(preStep);
             Tracker t = trackerDao.get(tracker);
             if(t==null && saveLog){
                 // TODO: throw into backlog table
                 trackerLogExtDao.save(new TrackerLogExt(log));
             }
             else{
-                // TODO:t.setStep(curStep);
+                t.setCurrentStep(curStep);
                 // if next step is null, end state
                 if(curStep == maxStep.get(log.getStepKey())){
                     //TODO:t.setStatus(1);
+                    t.setEndStatus(1);
                 }
                 tracker.setEndTime(log.getCreateTime());
                 //成功处理
