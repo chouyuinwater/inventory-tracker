@@ -56,4 +56,60 @@
             </if>
         </where>
     </select>
+    <insert id="save" parameterType="com.jd.inventory.tracker.domain.Tracker"
+            useGeneratedKeys="true" keyProperty="id">
+        <!--自增ID不能显示增加 要手工去掉-->
+        insert into tracker
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="null != templateid">
+                templateid,
+            </if>
+            <if test="null != eventno">
+                eventno,
+            </if>
+            <if test="null != sku">
+                sku,
+            </if>
+            <if test="null != amount">
+                amount,
+            </if>
+            <if test="null != endtime">
+                endtime,
+            </if>
+            <if test="null != currentStep">
+                current_step,
+            </if>
+            <if test="null != endStatus">
+                end_status,
+            </if>
+            sysid
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="null != templateid">
+                #{templateid,jdbcType=BIGINT},
+            </if>
+            <if test="null != eventno">
+                #{eventno,jdbcType=VARCHAR},
+            </if>
+            <if test="null != sku">
+                #{sku,jdbcType=VARCHAR},
+            </if>
+            <if test="null != amount">
+                #{amount,jdbcType=VARCHAR},
+            </if>
+            <if test="null != endtime">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="null != currentStep">
+                #{currentStep,jdbcType=INTEGER},
+            </if>
+            <if test="null != endStatus">
+                #{endStatus,jdbcType=INTEGER},
+            </if>
+            #{sysid,jdbcType=BIGINT}
+        </trim>
+    </insert>
 </mapper>
