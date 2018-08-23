@@ -56,7 +56,11 @@
             </if>
         </where>
     </select>
-
+    <select id="getAll" resultMap="BaseResultMap">
+        select
+        *
+        from template
+    </select>
     <insert id="save" parameterType="Template" useGeneratedKeys="true" keyProperty="id">
         insert into template (<include refid="Base_Column_List"/>)
         values

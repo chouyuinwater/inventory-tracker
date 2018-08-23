@@ -26,6 +26,10 @@ public class TemplateService {
         return templateDao.gets(page, template);
     }
 
+    public List<Template> getAllTemplates() {
+        return templateDao.getAll();
+    }
+
     @Transactional
     public boolean saveTemplate(Template template) {
         Template existTemplate = templateDao.get(template);

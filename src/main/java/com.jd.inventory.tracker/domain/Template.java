@@ -59,4 +59,8 @@ public class Template {
     public void setTemplateIds(List<Long> templateIds) {
         this.templateIds = templateIds;
     }
+
+    public String getStepKey(){
+        return this.sysid + "_" + this.templatename ;
+    }
 }
