@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jd.inventory.tracker.dao.TrackerLogDao">
-    <resultMap id="BaseResultMap" type="Tracker">
+    <resultMap id="BaseResultMap" type="TrackerLog">
         <id column="id" property="id"/>
         <result column="sysid" property="sysid"/>
         <result column="templateid" property="templateid"/>
@@ -37,7 +37,7 @@
             </if>
             <if test="null != eventno">
                 eventno,
-            </if>,
+            </if>
             <if test="null != sku">
                 sku,
             </if>

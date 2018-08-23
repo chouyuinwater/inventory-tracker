@@ -32,7 +32,7 @@ public class PusherService {
     TrackerLogDao trackerLogDao;
     @Autowired
     TrackerLogExtDao trackerLogExtDao;
-    @Autowired
+    //构造依赖
     TemplateService templateService;
     @Autowired
     TemplateDao templateDao;
@@ -40,8 +40,9 @@ public class PusherService {
     private Map<String,Integer> stepIndex = new HashMap<String,Integer>();
     private Map<String,Integer> maxStep = new HashMap<String,Integer>();
     private Logger logger = LoggerFactory.getLogger(getClass());
-
-    public void PusherService(){
+    @Autowired
+    public PusherService(TemplateService templateService){
+        this.templateService = templateService;
         List<Template> templates = templateService.getAllTemplates();
 
         for (Template template:templates) {
@@ -61,7 +62,7 @@ public class PusherService {
 
             int i = 1;
             for(Step step:steps){
-                stepIndex.put(template.getStepKey() + step.getStatus(), i++);
+                stepIndex.put(template.getStepKey() + "_" + step.getStatus(), i++);
             }
             maxStep.put(template.getStepKey(), i-1);
         }
@@ -74,14 +75,22 @@ public class PusherService {
         tracker.setSysid(log.getSysid());
         tracker.setTemplateid(log.getTemplateid());
         tracker.setEventno(log.getEventno());
-        Integer curStep = stepIndex.get(log.getStepKey());
+        tracker.setAmount(log.getAmount());
+        tracker.setEndTime(log.getCreateTime());
+        tracker.setEndtime(log.getCreateTime());
+        tracker.setEndStatus(0);//TODO：如果有1 不处理
+        Integer curStep = stepIndex.get(log.getStepKey()+ "_"+log.getEventstatus());
         int preStep = curStep == null? -1 : curStep-1;
         if(preStep>0){
             tracker.setCurrentStep(preStep);
             Tracker t = trackerDao.get(tracker);
-            if(t==null && saveLog){
-                // TODO: throw into backlog table
-                trackerLogExtDao.save(new TrackerLogExt(log));
+            if(t==null){
+                if(saveLog) {
+                    trackerLogExtDao.save(new TrackerLogExt(log));
+                }
+                else {
+                    return false;
+                }
             }
             else{
                 t.setCurrentStep(curStep);
@@ -92,14 +101,13 @@ public class PusherService {
                 }
                 tracker.setEndTime(log.getCreateTime());
                 //成功处理
-                trackerDao.update(t);
+                trackerDao.save(t);
                 handled = true;
             }
         }
         else{
             // first step
-            //TODO:t.setStep(1);
-            tracker.setEndTime(log.getCreateTime());
+            tracker.setCurrentStep(1);
             trackerDao.save(tracker);
             handled = true;
         }

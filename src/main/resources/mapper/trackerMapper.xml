@@ -56,9 +56,35 @@
             </if>
         </where>
     </select>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="com.jd.inventory.tracker.domain.Tracker">
+        select
+        <include refid="Base_Column_List"/>
+        from tracker
+        <where>
+            <if test="sysid !=null">
+                and sysid = #{sysid}
+            </if>
+            <if test="templateid !=null">
+                and templateid = #{templateid}
+            </if>
+            <if test="eventno !=null">
+                and eventno = #{eventno}
+            </if>
+            <if test="sku !=null and sku !=''">
+                and sku = #{sku}
+            </if>
+            <!--<if test="amount !=null and amount !=''">-->
+                <!--and amount = #{amount}-->
+            <!--</if>-->
+            <if test="currentStep !=null and currentStep !=''">
+                and current_step = #{currentStep}
+            </if>
+        </where>
+    </select>
+
     <insert id="save" parameterType="com.jd.inventory.tracker.domain.Tracker"
             useGeneratedKeys="true" keyProperty="id">
-        <!--自增ID不能显示增加 要手工去掉-->
         insert into tracker
         <trim prefix="(" suffix=")" suffixOverrides=",">
 

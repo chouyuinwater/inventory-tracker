@@ -14,4 +14,12 @@ public class Step {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 }

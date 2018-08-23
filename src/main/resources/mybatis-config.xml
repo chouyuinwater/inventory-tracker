@@ -12,6 +12,8 @@
         <typeAlias type="com.jd.inventory.tracker.domain.System" alias="System"/>
         <typeAlias type="com.jd.inventory.tracker.domain.Template" alias="Template"/>
         <typeAlias type="com.jd.inventory.tracker.domain.Tracker" alias="Tracker"/>
+        <typeAlias type="com.jd.inventory.tracker.domain.TrackerLog" alias="TrackerLog"/>
+        <typeAlias type="com.jd.inventory.tracker.domain.TrackerLogExt" alias="TrackerLogExt"/>
     </typeAliases>
     <plugins>
         <plugin interceptor="com.jd.inventory.tracker.interceptor.PaginationInterceptor"/>
