@@ -39,6 +39,7 @@ public class PusherService {
 
     private Map<String,Integer> stepIndex = new HashMap<String,Integer>();
     private Map<String,Integer> maxStep = new HashMap<String,Integer>();
+    private Map<String,Long> templateIdMap = new HashMap<String,Long>();
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     public PusherService(TemplateService templateService){
@@ -65,15 +66,15 @@ public class PusherService {
                 stepIndex.put(template.getStepKey() + "_" + step.getStatus(), i++);
             }
             maxStep.put(template.getStepKey(), i-1);
+            templateIdMap.put(template.getStepKey(), template.getId());
         }
-
     }
     public boolean inputTrackLog(TrackerLog log, boolean saveLog){
         boolean handled = false;
         Tracker tracker = new Tracker();
         tracker.setSku(log.getSku());
         tracker.setSysid(log.getSysid());
-        tracker.setTemplateid(log.getTemplateid());
+        tracker.setTemplateid(templateIdMap.get(log.getStepKey()));
         tracker.setEventno(log.getEventno());
         tracker.setAmount(log.getAmount());
         tracker.setEndTime(log.getCreateTime());
