@@ -79,6 +79,7 @@ public class TrackerService {
             TrackerVo.InnerTracker source = new TrackerVo.InnerTracker();
             fillTemplateData(sourceTemplate, source, sourceTracker);
             to.setSourceTracker(source);
+            to.setSourceTemplate(sourceTemplate.getTemplatename());
 
             Tracker targetTracker = targetTrackerMap.get(sourceTracker.getEventno());
             to.setTargetTracker(null);
@@ -87,6 +88,8 @@ public class TrackerService {
                 TrackerVo.InnerTracker target = new TrackerVo.InnerTracker();
                 fillTemplateData(targetTemplate, target, targetTracker);
                 to.setTargetTracker(target);
+                to.setTargetTemplate(targetTemplate.getTemplatename());
+
             }
             trackerList.add(to);
         }

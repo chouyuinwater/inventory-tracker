@@ -16,7 +16,7 @@
         frozenColumns: [[
             {
                 field: 'eventno',
-                width: '15%',
+                width: '10%',
                 title: "事件",
                 align: 'center'
             },
@@ -24,23 +24,39 @@
         columns: [
             [
                 {
-                    title: "sku",
+                    title: "原系统",
+                    colspan: 2
+                },
+                {
+                    title: "目标系统",
                     colspan: 2
                 }
             ],
             [{
+                field: 'sourceTemplate',
+                width: '10%',
+                title: "模板",
+                rowspan: 1,
+                align: 'center',
+            }, {
                 field: 'sourceStep',
-                width: '40%',
-                title: "原系统",
+                width: '32%',
+                title: "状态",
                 rowspan: 1,
                 align: 'center',
                 formatter: function (value, rowData, rowIndex) {
                     return '<div class="sourceStep' + rowIndex + '"></div>';
                 }
             }, {
+                field: 'targetTemplate',
+                width: '10%',
+                title: "模板",
+                rowspan: 1,
+                align: 'center',
+            }, {
                 field: 'targetStep',
-                width: '40%',
-                title: "目标系统",
+                width: '32%',
+                title: "状态",
                 rowspan: 1,
                 align: 'center',
                 formatter: function (value, rowData, rowIndex) {
@@ -71,7 +87,7 @@
                 });
                 $(".sourceStep" + index).setStep(value.sourceTracker.currentStep);
 
-                if(value.targetTracker) {
+                if (value.targetTracker) {
                     var targetSteps = [];
                     value.targetTracker.innerTemplates.forEach(function (innerValue, innerIndex, innerArray) {
                         var obj = {};
@@ -107,7 +123,7 @@
 
     });
 
-        $("#tracker_detail_button").on('click', function () {
+    $("#tracker_detail_button").on('click', function () {
         var horizontalPadding = 30;
         var verticalPadding = 30;
         var width = 650, height = 800;
