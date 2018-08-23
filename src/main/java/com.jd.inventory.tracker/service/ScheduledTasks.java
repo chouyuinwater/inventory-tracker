@@ -24,7 +24,11 @@ public class ScheduledTasks {
     @Scheduled(fixedDelay = 15000)
     public void fastSchedule() {
         TrackerLogExt ext = trackerLogExtDao.get(new TrackerLogExt());
-        pusherService.handleBacklog(ext);
+        boolean handled = pusherService.handleBacklog(ext);
+        if(handled){
+            ext.setYn(1);
+            trackerLogExtDao.update(ext);
+        }
         logger.info("fastScheduleCount run at () times", fastScheduleCount++);
     }
 

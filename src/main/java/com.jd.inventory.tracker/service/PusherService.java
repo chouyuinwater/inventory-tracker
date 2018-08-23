@@ -3,7 +3,6 @@ package com.jd.inventory.tracker.service;
 import com.jd.inventory.tracker.domain.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.jd.inventory.tracker.dao.TemplateDao;
 import com.jd.inventory.tracker.dao.TrackerDao;
 import com.jd.inventory.tracker.dao.TrackerLogDao;
@@ -68,7 +67,8 @@ public class PusherService {
         }
 
     }
-    public void inputTrackLog(TrackerLog log, boolean saveLog){
+    public boolean inputTrackLog(TrackerLog log, boolean saveLog){
+        boolean handled = false;
         Tracker tracker = new Tracker();
         tracker.setSku(log.getSku());
         tracker.setSysid(log.getSysid());
@@ -79,8 +79,9 @@ public class PusherService {
         if(preStep>0){
             // TODO: tracker.setStep(preStep);
             Tracker t = trackerDao.get(tracker);
-            if(t==null){
+            if(t==null && saveLog){
                 // TODO: throw into backlog table
+                trackerLogExtDao.save(new TrackerLogExt(log));
             }
             else{
                 // TODO:t.setStep(curStep);
@@ -89,7 +90,9 @@ public class PusherService {
                     //TODO:t.setStatus(1);
                 }
                 tracker.setCurrentDate(log.getCreateTime());
+                //成功处理
                 trackerDao.update(t);
+                handled = true;
             }
         }
         else{
@@ -97,15 +100,18 @@ public class PusherService {
             //TODO:t.setStep(1);
             tracker.setCurrentDate(log.getCreateTime());
             trackerDao.save(tracker);
+            handled = true;
         }
         if(saveLog){
             trackerLogDao.save(log);
         }
-
+        return handled;
     }
 
-    public void handleBacklog(TrackerLogExt ext){
+    public boolean handleBacklog(TrackerLogExt ext){
+        if(ext==null)
+            return false;
         TrackerLog log = new TrackerLog(ext);
-        inputTrackLog(log, false);
+        return inputTrackLog(log, false);
     }
 }

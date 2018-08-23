@@ -1,5 +1,9 @@
 package com.jd.inventory.tracker.domain;
 
+import com.jd.inventory.tracker.domain.vo.TrackerLogVo;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -24,6 +28,22 @@ public class TrackerLog {
         this.eventstatus = ext.getEventstatus();
         this.createTime = ext.getCreateTime();
         this.updateTime = ext.getUpdateTime();
+    }
+
+    public TrackerLog(TrackerLogVo vo){
+        this.sysid = vo.getSysid();
+        this.templateid = vo.getTemplateid();
+        this.eventno = vo.getEventno();
+        this.sku = vo.getSku();
+        this.amount = vo.getAmount();
+        this.eventstatus = vo.getEventstatus();
+        // TODO: 解析放到VO
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            this.createTime = formatter.parse(vo.getCreateTime());
+        }catch(Exception ex){
+            ;
+        }
     }
 
     public Long getId() {

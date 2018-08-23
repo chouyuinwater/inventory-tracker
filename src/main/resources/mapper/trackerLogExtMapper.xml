@@ -28,13 +28,42 @@
         select
         <include refid="Base_Column_List"/>
         from tracker_log_ext
-        <where>
-            <if test="status !=null">
-                and status = #{status}
-            </if>
-        </where>
+        where yn =0
+        <!--<where>-->
+            <!--<if test="yn !=null">-->
+                <!--and yn = #{yn}-->
+            <!--</if>-->
+        <!--</where>-->
         limit 1;
     </select>
+    <update id="update" parameterType="com.jd.inventory.tracker.domain.TrackerLogExt">
+      update tracker_log_ext
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                <if test="sysid != null and sysid != ''">
+                    sysid = #{sysid},
+                </if>
+                <if test="templateid != null and templateid != ''">
+                    templateid = #{templateid},
+                </if>
+                <if test="eventno != null and eventno != ''">
+                    eventno = #{eventno},
+                </if>
+                <if test="sku != null and sku != ''">
+                    sku = #{sku},
+                </if>
+                <if test="amount != null and amount != ''">
+                    amount = #{amount},
+                </if>
+                    yn = #{yn},
+            </trim>
+        </set>
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+        </where>
+    </update>
     <insert id="save" parameterType="com.jd.inventory.tracker.domain.TrackerLogExt"
             useGeneratedKeys="true" keyProperty="id">
         <!--自增ID不能显示增加 要手工去掉-->

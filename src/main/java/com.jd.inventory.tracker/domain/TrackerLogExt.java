@@ -15,7 +15,20 @@ public class TrackerLogExt {
     private Integer eventstatus;    //当前状态
     private Date createTime;        //send time
     private Date updateTime;
-    private int status; //0:unhandled, 1:hundling, 2:hundled
+    private int yn; //0:unhandled, 1:hundling, 2:hundled
+    public TrackerLogExt(TrackerLog log){
+        this.sysid = log.getSysid();
+        this.templateid = log.getTemplateid();
+        this.eventno = log.getEventno();
+        this.sku = log.getSku();
+        this.amount = log.getAmount();
+        this.eventstatus = log.getEventstatus();
+        this.createTime = log.getCreateTime();
+        this.updateTime = log.getUpdateTime();
+    }
+    public TrackerLogExt(){
+
+    }
 
     public Long getId() {
         return id;
@@ -89,12 +102,12 @@ public class TrackerLogExt {
         this.updateTime = updateTime;
     }
 
-    public int getStatus() {
-        return status;
+    public int getYn() {
+        return yn;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setYn(int status) {
+        this.yn = status;
     }
 
     public String getStepKey(){
