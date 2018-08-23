@@ -19,7 +19,17 @@
                 width: '10%',
                 title: "事件",
                 align: 'center'
-            },
+            }, {
+                field: 'op',
+                width: '5%',
+                title: "操作",
+                align: 'center',
+                sortable: false,
+                formatter: function (value, rowData, rowIndex) {
+                    var html = "<a class='format_link_button' style='color: #e68900' href='javascript:alert(1)'>明细</a>";
+                    return html;
+                }
+            }
         ]],
         columns: [
             [
@@ -40,7 +50,7 @@
                 align: 'center',
             }, {
                 field: 'sourceStep',
-                width: '32%',
+                width: '30%',
                 title: "状态",
                 rowspan: 1,
                 align: 'center',
@@ -55,7 +65,7 @@
                 align: 'center',
             }, {
                 field: 'targetStep',
-                width: '32%',
+                width: '30%',
                 title: "状态",
                 rowspan: 1,
                 align: 'center',
