@@ -1,11 +1,15 @@
 package com.jd.inventory.tracker.domain;
 
+import java.util.List;
+
 public class System {
     private Long id;
     private String sysname;
-    private String up;
-    private String down;
+    private String relation;
     private Integer status;
+
+    //查询使用
+    private List<String> idList;
 
     public Long getId() {
         return id;
@@ -23,20 +27,12 @@ public class System {
         this.sysname = sysname;
     }
 
-    public String getUp() {
-        return up;
+    public String getRelation() {
+        return relation;
     }
 
-    public void setUp(String up) {
-        this.up = up;
-    }
-
-    public String getDown() {
-        return down;
-    }
-
-    public void setDown(String down) {
-        this.down = down;
+    public void setRelation(String relation) {
+        this.relation = relation;
     }
 
     public Integer getStatus() {
@@ -45,5 +41,13 @@ public class System {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public List<String> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<String> idList) {
+        this.idList = idList;
     }
 }

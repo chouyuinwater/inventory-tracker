@@ -5,6 +5,9 @@ import java.util.List;
 public class TrackerVo {
     private String eventno;
 
+    private String sourceTemplate;
+    private String targetTemplate;
+
     private InnerTracker sourceTracker;
 
     private InnerTracker targetTracker;
@@ -74,4 +77,21 @@ public class TrackerVo {
             this.status = status;
         }
     }
+
+    public String getSourceTemplate() {
+        return sourceTemplate;
+    }
+
+    public void setSourceTemplate(String sourceTemplate) {
+        this.sourceTemplate = sourceTemplate;
+    }
+
+    public String getTargetTemplate() {
+        return targetTemplate;
+    }
+
+    public void setTargetTemplate(String targetTemplate) {
+        this.targetTemplate = targetTemplate;
+    }
+
 }

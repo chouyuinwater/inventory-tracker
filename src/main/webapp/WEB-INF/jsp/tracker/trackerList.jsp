@@ -45,6 +45,11 @@
                                        panelHeight:'auto',
                                        onSelect: function(data){
                                            $('#sourceSysidHidden').val($('#sourceSysid').combobox('getValue'));
+                                           $('#targetSysid').combobox({
+                                                url:'/system/getRelationSystems?id='+$('#sourceSysid').combobox('getValue'),
+                                                valueField:'id',
+                                                textField:'sysname'
+                                            });
                                        }
                         ">
                     </div>
@@ -53,13 +58,8 @@
                         <input type="text" id="targetSysid" class="easyui-combobox input" style="height:25px;"
                                data-options="
                                        required: true,
-                                       url:'/system/getSystems',
-                                       method:'post',
-                                       valueField:'id',
                                        editable:false,
-                                       textField:'sysname',
                                        panelHeight:'auto',
-                                       editable:false,
                                        onSelect: function(data){
                                            $('#targetSysidHidden').val($('#targetSysid').combobox('getValue'));
                                        }

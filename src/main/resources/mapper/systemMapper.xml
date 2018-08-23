@@ -4,16 +4,14 @@
     <resultMap id="BaseResultMap" type="System">
         <id column="id" property="id"/>
         <result column="sysname" property="sysname"/>
-        <result column="up" property="up"/>
-        <result column="down" property="down"/>
+        <result column="relation" property="relation"/>
         <result column="status" property="status"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,
         sysname,
-        up,
-        down,
+        relation,
         status
     </sql>
 
@@ -45,6 +43,12 @@
             <if test="po.sysname !=null and po.sysname !=''">
                 and sysname = #{po.sysname}
             </if>
+            <if test="po.idList !=null and po.idList.size>0">
+                and id in
+                <foreach collection="po.idList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
         </where>
     </select>
 
@@ -54,8 +58,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             #{id},
             #{sysname},
-            #{up},
-            #{down},
+            #{relation},
             #{status}
         </trim>
     </insert>
@@ -67,11 +70,8 @@
                 <if test="sysname != null and sysname != ''">
                     sysname = #{sysname},
                 </if>
-                <if test="up != null and up != ''">
-                    up = #{up},
-                </if>
-                <if test="down != null and down != ''">
-                    down = #{down},
+                <if test="relation != null and relation != ''">
+                    relation = #{relation},
                 </if>
                 <if test="status != null">
                     status = #{status},
