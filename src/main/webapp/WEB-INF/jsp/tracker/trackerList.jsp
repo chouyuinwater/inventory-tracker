@@ -16,7 +16,10 @@
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.form.js"></script>
     <script type="text/javascript" src="/static/js/easyui/jquery.easyui.min.js"></script>
-
+    <style type="text/css">
+        .row{padding:10px;width:99%;}
+        .cols{float:left;width:32%;padding:8px 0;}
+    </style>
 </head>
 <body>
 <div>
@@ -28,7 +31,7 @@
                 <input name="targetSysid" id="targetSysidHidden" type="hidden"/>
                 <div class="row">
                     <div class="cols">
-                        <lable>发起系统：</lable>
+                        <lable class="label">原系统：</lable>
                         <input type="text" id="sourceSysid" class="easyui-combobox input" style="height:25px;"
                                data-options="
                                        required: true,
@@ -44,7 +47,7 @@
                         ">
                     </div>
                     <div class="cols">
-                        <lable>目标系统：</lable>
+                        <lable class="label">目标系统：</lable>
                         <input type="text" id="targetSysid" class="easyui-combobox input" style="height:25px;"
                                data-options="
                                        required: true,
@@ -59,38 +62,39 @@
                                        }
                         ">
                     </div>
-
-                </div>
-                <div class="row">
                     <div class="cols">
-                        <lable>起始时间：</lable>
-                        <input type="text" id="startTime" class="easyui-datebox input"
-                               data-options="required:false,editable:false" style="height:25px;"/>
-                    </div>
-                    <div class="cols">
-                        <lable>终止时间：</lable>
-                        <input type="text" id="endTime" class="easyui-datebox input"
-                               data-options="required:false,editable:false" style="height:25px;"/>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="cols">
-                        <lable>对比sku：</lable>
-                        <input type="text" id="sku" class="easyui-textbox input"
-                               data-options="required:true" style="height:25px;"/>
-                    </div>
-                    <div class="cols">
-                        <lable>事件单号：</lable>
+                        <lable class="label">事件单号：</lable>
                         <input type="text" id="eventno" class="easyui-textbox input"
                                data-options="required:false" style="height:25px;"/>
                     </div>
                 </div>
-
                 <div class="row">
+                    <div class="cols">
+                        <lable class="label">起始时间：</lable>
+                        <input type="text" id="startTime" class="easyui-datebox input"
+                               data-options="required:true,editable:false" style="height:25px;"/>
+                    </div>
+                    <div class="cols">
+                        <lable class="label">终止时间：</lable>
+                        <input type="text" id="endTime" class="easyui-datebox input"
+                               data-options="required:true,editable:false" style="height:25px;"/>
+                    </div>
+                    <div class="cols">
+                        <lable class="label">sku：</lable>
+                        <input type="text" id="sku" class="easyui-textbox input"
+                               data-options="required:true" style="height:25px;"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cols">
+                        <lable class="label">只看差异：</lable>
+                        <input type="checkbox" id="diff" checked/>
+                    </div>
                     <div class="cols">
                         <a id="tracker_query_button" href="javascript:void(0)" class="easyui-linkbutton btn"
                            iconCls="icon-search">开始对比</a>
+                    </div>
+                    <div class="cols">
                     </div>
                 </div>
             </form>

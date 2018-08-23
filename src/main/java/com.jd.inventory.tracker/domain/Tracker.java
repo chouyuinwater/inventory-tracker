@@ -11,10 +11,15 @@ public class Tracker {
     private String sku;
     private String amount;
     private Date currentDate;
-    private Integer currentStatus;
+    private Integer currentStep;
+    private Integer endStatus;
 
     //查询使用
     private List<String> eventnoList;
+    private Date startTime;
+    private Date endTime;
+    private Boolean diff;
+
 
     public Long getId() {
         return id;
@@ -72,12 +77,20 @@ public class Tracker {
         this.currentDate = currentDate;
     }
 
-    public Integer getCurrentStatus() {
-        return currentStatus;
+    public Integer getCurrentStep() {
+        return currentStep;
     }
 
-    public void setCurrentStatus(Integer currentStatus) {
-        this.currentStatus = currentStatus;
+    public void setCurrentStep(Integer currentStep) {
+        this.currentStep = currentStep;
+    }
+
+    public Integer getEndStatus() {
+        return endStatus;
+    }
+
+    public void setEndStatus(Integer endStatus) {
+        this.endStatus = endStatus;
     }
 
     public List<String> getEventnoList() {
@@ -86,5 +99,29 @@ public class Tracker {
 
     public void setEventnoList(List<String> eventnoList) {
         this.eventnoList = eventnoList;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public Boolean getDiff() {
+        return diff;
+    }
+
+    public void setDiff(Boolean diff) {
+        this.diff = diff;
     }
 }
