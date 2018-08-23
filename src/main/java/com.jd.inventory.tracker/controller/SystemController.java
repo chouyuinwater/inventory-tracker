@@ -39,6 +39,14 @@ public class SystemController {
         return systemService.getSystems(null, system);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getRelationSystems", method = RequestMethod.POST)
+    public List<System> getRelationSystems(System system) {
+        logger.info("requestBody : system={}", system);
+        system.setStatus(SystemStatusEnum.VALID.getStatus());
+        return systemService.getRelationSystems(system);
+    }
+
     @RequestMapping(value = "/toAddSystem", method = RequestMethod.GET)
     public String toAddSystem() {
         return "system/editSystem";

@@ -107,7 +107,7 @@
 
     });
 
-    $("#tracker_detail_button").on('click', function () {
+        $("#tracker_detail_button").on('click', function () {
         var horizontalPadding = 30;
         var verticalPadding = 30;
         var width = 650, height = 800;

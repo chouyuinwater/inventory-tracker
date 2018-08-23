@@ -12,14 +12,9 @@
                    value="${system.sysname}">
         </div>
         <div class="row">
-            <label class="label">上游系统:</label>
-            <input name="up" class="easyui-textbox" style="height:25px;" data-options="required:true"
-                   value="${system.up}">
-        </div>
-        <div class="row">
-            <label class="label">下游系统:</label>
-            <input name="down" class="easyui-textbox" style="height:25px;" data-options="required:true"
-                   value="${system.down}">
+            <label class="label">关联系统:</label>
+            <input name="relation" class="easyui-textbox" style="height:25px;" data-options="required:true"
+                   value="${system.relation}">
         </div>
     </form>
 </div>

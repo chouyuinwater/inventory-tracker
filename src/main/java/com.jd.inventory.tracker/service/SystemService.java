@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -24,6 +25,14 @@ public class SystemService {
 
     public List<System> getSystems(Page page, System system) {
         return systemDao.gets(page, system);
+    }
+
+    public List<System> getRelationSystems(System system) {
+        System existSystem = systemDao.get(system);
+        String relationSystem = existSystem.getRelation();
+        List<String> idList = Arrays.asList(relationSystem.split(","));
+        system.setIdList(idList);
+        return systemDao.gets(null, system);
     }
 
     @Transactional
@@ -47,7 +56,7 @@ public class SystemService {
         if (existSystem == null)
             throw new ServiceException(ServiceStatusCodeEnum.FAIL);
 
-        if(!existSystem.getSysname().equals(system.getSysname())){
+        if (!existSystem.getSysname().equals(system.getSysname())) {
             systemQuery.setSysname(system.getSysname());
             systemQuery.setId(null);
             existSystem = systemDao.get(systemQuery);

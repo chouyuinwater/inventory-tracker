@@ -24,16 +24,11 @@
                 title: "系统名",
                 align: 'center'
             }, {
-                field: 'up',
+                field: 'relation',
                 width: '15%',
-                title: "上游系统",
+                title: "关联系统",
                 align: 'center'
-            }, {
-                field: 'down',
-                width: '15%',
-                title: "下游系统",
-                align: 'center',
-            }, {
+            },{
                 field: 'op',
                 width: '23%',
                 title: "操作",
