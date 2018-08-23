@@ -9,7 +9,8 @@
         <result column="sku" property="sku"/>
         <result column="amount" property="amount"/>
         <result column="current_date" property="currentDate"/>
-        <result column="current_status" property="currentStatus"/>
+        <result column="current_step" property="currentStep"/>
+        <result column="end_status" property="endStatus"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -20,7 +21,8 @@
         sku,
         amount,
         current_date,
-        current_status
+        current_step,
+        end_status
     </sql>
 
     <select id="gets" resultMap="BaseResultMap">
@@ -33,6 +35,15 @@
             </if>
             <if test="po.sku !=null and po.sku !=''">
                 and sku = #{po.sku}
+            </if>
+            <if test="po.startTime !=null">
+                and current_date>=#{po.startTime}
+            </if>
+            <if test="po.endTime !=null">
+                <![CDATA[ and current_date<=#{po.endTime}]]>
+            </if>
+            <if test="po.diff!=null and po.diff==true">
+                and end_status=1
             </if>
             <if test="po.eventnoList !=null and po.eventnoList.size>0">
                 and eventno in

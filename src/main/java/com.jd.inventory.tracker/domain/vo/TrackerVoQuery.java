@@ -14,7 +14,7 @@ public class TrackerVoQuery {
     private Date endTime;
     private String eventno;
     private String sku;
-
+    private Boolean diff;
     public Long getSourceSysid() {
         return sourceSysid;
     }
@@ -61,5 +61,13 @@ public class TrackerVoQuery {
 
     public void setEventno(String eventno) {
         this.eventno = eventno;
+    }
+
+    public Boolean getDiff() {
+        return diff;
+    }
+
+    public void setDiff(Boolean diff) {
+        this.diff = diff;
     }
 }

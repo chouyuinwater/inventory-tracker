@@ -1,6 +1,5 @@
 package com.jd.inventory.tracker.service;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jd.inventory.tracker.dao.TemplateDao;
 import com.jd.inventory.tracker.dao.TrackerDao;
@@ -24,6 +23,7 @@ public class TrackerService {
 
     @Autowired
     TemplateDao templateDao;
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public List<TrackerVo> getTrackers(Page page, TrackerVoQuery trackerVoQuery) {
@@ -95,13 +95,6 @@ public class TrackerService {
         String templateStr = template.getTemplate();
         List<TrackerVo.InnerTemplate> innerTemplateList = JSONObject.parseArray(templateStr, TrackerVo.InnerTemplate.class);
         ti.setInnerTemplates(innerTemplateList);
-        for (int i = 0, len = innerTemplateList.size(); i < len; i++) {
-            TrackerVo.InnerTemplate innerTemplate = innerTemplateList.get(i);
-            if (innerTemplate.getStatus().equals(String.valueOf(tracker.getCurrentStatus()))) {
-                ti.setCurrentStep(i + 1);
-                return;
-            }
-        }
-        ti.setCurrentStep(innerTemplateList.size());
+        ti.setCurrentStep(tracker.getCurrentStep());
     }
 }

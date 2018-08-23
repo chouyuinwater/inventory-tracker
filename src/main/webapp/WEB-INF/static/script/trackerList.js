@@ -101,7 +101,8 @@
             startTime: $("#startTime").val(),
             endTime: $("#endTime").val(),
             sku: $("#sku").val(),
-            eventno: $("#sku").val()
+            eventno: $("#sku").val(),
+            diff: $("#diff").is(":checked")
         });
 
     });
