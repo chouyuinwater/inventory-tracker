@@ -10,6 +10,7 @@ import com.jd.inventory.tracker.domain.vo.TrackerVo;
 import com.jd.inventory.tracker.domain.vo.TrackerVoQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,8 @@ public class TrackerService {
 
     public List<TrackerVo> getTrackers(Page page, TrackerVoQuery trackerVoQuery) {
         Tracker trackerQuery = new Tracker();
+        BeanUtils.copyProperties(trackerVoQuery,trackerQuery);
         trackerQuery.setSysid(trackerVoQuery.getSourceSysid());
-        trackerQuery.setSku(trackerVoQuery.getSku());
         List<Tracker> sourceTrackerList = trackerDao.gets(page, trackerQuery);
 
         Set<Long> templateSet = new HashSet<>();
@@ -42,6 +43,8 @@ public class TrackerService {
 
         trackerQuery.setSysid(trackerVoQuery.getTargetSysid());
         trackerQuery.setEventnoList(eventnoList);
+        trackerQuery.setStartTime(null);
+        trackerQuery.setEndTime(null);
         List<Tracker> targetTrackerList = trackerDao.gets(page, trackerQuery);
 
         Map<String, Tracker> targetTrackerMap = new HashMap<>();

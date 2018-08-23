@@ -31,7 +31,7 @@
             [{
                 field: 'sourceStep',
                 width: '40%',
-                title: "系统A",
+                title: "原系统",
                 rowspan: 1,
                 align: 'center',
                 formatter: function (value, rowData, rowIndex) {
@@ -40,7 +40,7 @@
             }, {
                 field: 'targetStep',
                 width: '40%',
-                title: "系统B",
+                title: "目标系统",
                 rowspan: 1,
                 align: 'center',
                 formatter: function (value, rowData, rowIndex) {
@@ -98,10 +98,10 @@
         $('#tracker_grid').datagrid('load', {
             sourceSysid: $("#sourceSysidHidden").val(),
             targetSysid: $("#targetSysidHidden").val(),
-            startTime: $("#startTime").val(),
-            endTime: $("#endTime").val(),
+            startTime: $("#startTimeHidden").val(),
+            endTime: $("#endTimeHidden").val(),
             sku: $("#sku").val(),
-            eventno: $("#sku").val(),
+            eventno: $("#eventno").val(),
             diff: $("#diff").is(":checked")
         });
 

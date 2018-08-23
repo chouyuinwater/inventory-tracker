@@ -8,7 +8,7 @@
         <result column="eventno" property="eventno"/>
         <result column="sku" property="sku"/>
         <result column="amount" property="amount"/>
-        <result column="current_date" property="currentDate"/>
+        <result column="endtime" property="endtime"/>
         <result column="current_step" property="currentStep"/>
         <result column="end_status" property="endStatus"/>
     </resultMap>
@@ -20,7 +20,7 @@
         eventno,
         sku,
         amount,
-        current_date,
+        endtime,
         current_step,
         end_status
     </sql>
@@ -36,11 +36,14 @@
             <if test="po.sku !=null and po.sku !=''">
                 and sku = #{po.sku}
             </if>
+            <if test="po.eventno !=null and po.eventno !=''">
+                and eventno=#{po.eventno}
+            </if>
             <if test="po.startTime !=null">
-                and current_date>=#{po.startTime}
+                and endtime>=#{po.startTime}
             </if>
             <if test="po.endTime !=null">
-                <![CDATA[ and current_date<=#{po.endTime}]]>
+                <![CDATA[ and endtime<=#{po.endTime}]]>
             </if>
             <if test="po.diff!=null and po.diff==true">
                 and end_status=1

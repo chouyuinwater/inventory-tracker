@@ -29,6 +29,8 @@
             <form id="tracker_query_form">
                 <input name="sourceSysid" id="sourceSysidHidden" type="hidden"/>
                 <input name="targetSysid" id="targetSysidHidden" type="hidden"/>
+                <input name="startTime" id="startTimeHidden" type="hidden"/>
+                <input name="endTime" id="endTimeHidden" type="hidden"/>
                 <div class="row">
                     <div class="cols">
                         <lable class="label">原系统：</lable>
@@ -57,6 +59,7 @@
                                        editable:false,
                                        textField:'sysname',
                                        panelHeight:'auto',
+                                       editable:false,
                                        onSelect: function(data){
                                            $('#targetSysidHidden').val($('#targetSysid').combobox('getValue'));
                                        }
@@ -71,13 +74,25 @@
                 <div class="row">
                     <div class="cols">
                         <lable class="label">起始时间：</lable>
-                        <input type="text" id="startTime" class="easyui-datebox input"
-                               data-options="required:true,editable:false" style="height:25px;"/>
+                        <input type="text" id="startTime" class="easyui-datebox input" style="height:25px;"
+                               data-options="
+                               required:true,
+                               editable:false,
+                               onSelect: function(date){
+                                  $('#startTimeHidden').val($('#startTime').datebox('getValue'));
+                               }
+                        "/>
                     </div>
                     <div class="cols">
                         <lable class="label">终止时间：</lable>
-                        <input type="text" id="endTime" class="easyui-datebox input"
-                               data-options="required:true,editable:false" style="height:25px;"/>
+                        <input type="text" id="endTime" class="easyui-datebox input" style="height:25px;"
+                               data-options="
+                               required:true,
+                               editable:false,
+                               onSelect: function(date){
+                                  $('#endTimeHidden').val($('#endTime').datebox('getValue'));
+                               }
+                        "/>
                     </div>
                     <div class="cols">
                         <lable class="label">sku：</lable>

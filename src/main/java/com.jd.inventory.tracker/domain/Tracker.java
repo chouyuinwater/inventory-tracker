@@ -10,7 +10,7 @@ public class Tracker {
     private String eventno;
     private String sku;
     private String amount;
-    private Date currentDate;
+    private Date endtime;
     private Integer currentStep;
     private Integer endStatus;
 
@@ -69,12 +69,12 @@ public class Tracker {
         this.amount = amount;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
+    public Date getEndtime() {
+        return endtime;
     }
 
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
     }
 
     public Integer getCurrentStep() {
