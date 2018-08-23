@@ -101,7 +101,7 @@ public class PusherService {
                 }
                 tracker.setEndTime(log.getCreateTime());
                 //成功处理
-                trackerDao.save(t);
+                trackerDao.update(t);
                 handled = true;
             }
         }

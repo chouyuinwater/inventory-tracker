@@ -138,4 +138,27 @@
             #{sysid,jdbcType=BIGINT}
         </trim>
     </insert>
+
+
+    <update id="update" parameterType="com.jd.inventory.tracker.domain.Tracker">
+        update tracker
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                <if test="endtime != null">
+                    endtime = #{endtime},
+                </if>
+                <if test="currentStep != null and currentStep != ''">
+                    current_step = #{currentStep},
+                </if>
+                <if test="endStatus != null and endStatus != ''">
+                    end_status = #{endStatus},
+                </if>
+            </trim>
+        </set>
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+        </where>
+    </update>
 </mapper>
